@@ -1077,7 +1077,7 @@ ggplot(data=resamps,
 ggsave("AUC.png",
        path = "./figs/Models' Performances")
 
-############################### Models' Time Elapsed Plots #####################
+############################### Models' Time Elapsed Plot #####################
 ################################################################################
 Custom_Palette <- c("#E64B35B2","#4DBBD5B2","#00A087B2","#3C5488B2",
                     "#F39B7FB2","#8491B4B2","#91D1C2B2","#DC0000B2" 
@@ -1114,6 +1114,8 @@ ggsave("Time Elapsed.png",
 ################################################################################
 ELT <- toc()
 
+######################### Export Model's Performnaces ##########################
+################################################################################
 
 sink("./Console output.txt",append = TRUE)
 print(paste(ELT$msg,(ELT$toc - ELT$tic), "sec elapsed"))
