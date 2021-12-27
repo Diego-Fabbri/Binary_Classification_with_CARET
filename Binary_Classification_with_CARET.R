@@ -25,7 +25,7 @@ library(plotROC)
 data <- read_excel("heart disease.xlsx")
 data <- as.data.frame(data)
 
-#Define proportion for test dataset
+#Define proportion for training dataset
 proportion <- 0.7
 
 #Rename Target Variable
