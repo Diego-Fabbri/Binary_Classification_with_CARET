@@ -4,6 +4,7 @@ setwd("C:/Users/utente/Documents/R/GitHub_Projects/Binary_Classification_with_CA
 library(tictoc)
 tic("Since Star_Time")
 
+dir.create("figs") #save plots
 dir.create("figs/Confusion Matrices") #save Confusion Matrices' plots
 dir.create("figs/ROC Curves") # Save ROC Curves plots
 dir.create("figs/Models' Performances") # Save Models' Performances plots
@@ -1089,7 +1090,7 @@ Timings$prop <- Timings$Time/sum(Timings$Time) #percentages
 
 #Plot Time elapsed (%)
 ggplot(data=Timings,
-       aes(x=Models, y=prop, fill=Models)) +
+       aes(x=reorder(Models,-prop),y=prop, fill=Models)) +
   geom_bar(stat="identity", 
            position=position_dodge(),
            color = "black")+
@@ -1104,9 +1105,12 @@ ggplot(data=Timings,
   #coord_flip()+
   theme(legend.position = "none")+
   ggtitle("Models' Time Elapsed")+
-  ylab("")
-
-
+  ylab("")+
+  xlab("")+
+  annotate(geom="text",x=length(Timings$Models)-0.5,
+           y=max(Timings$prop)-min(Timings$prop),
+           label=paste("Total algorithms'\n elapsed time \n",round(sum(Timings$Time),2)),
+             color="black", size = 5)
 ggsave("Time Elapsed.png",
        path = "./")
 
